@@ -1163,6 +1163,14 @@ button:disabled,
   color: var(--text-sub);
 }
 
+.contents-stack {
+  display: contents;
+}
+
+#diag-extra-list .alert-card {
+  margin-top: var(--space-sm);
+}
+
 .note-stack {
   display: flex;
   flex-direction: column;

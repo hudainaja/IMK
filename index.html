@@ -87,10 +87,10 @@
 
             <div class="progress-meta">
               <span class="muted">Kesiapan Mata Kuliah Keahlian</span>
-              <strong class="mono-num">5 / 21 Selesai</strong>
+              <strong class="mono-num" id="home-keahlian-selesai">5 / 21 Selesai</strong>
             </div>
-            <div class="progress-track" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100">
-              <div class="progress-fill" style="width: 24%"></div>
+            <div class="progress-track" id="home-progress-track" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill" id="home-progress-fill" style="width: 24%"></div>
             </div>
           </div>
 
@@ -113,7 +113,7 @@
               </div>
               <div>
                 <div class="bento-val" id="home-perhatian">2 Matkul</div>
-                <p class="bento-sub text-peach">! Nilai D &amp; Prasyarat</p>
+                <p class="bento-sub text-peach" id="home-perhatian-sub">! Nilai D &amp; Prasyarat</p>
               </div>
             </div>
 
@@ -134,8 +134,8 @@
                 <img src="assets/home/8d0b3.svg" alt="">
               </div>
               <div>
-                <div class="bento-val mono-num">40%</div>
-                <p class="bento-sub" id="home-jalur-short">Game Technology</p>
+                <div class="bento-val mono-num" id="home-jalur-pct">40%</div>
+                <p class="bento-sub" id="home-jalur-short">Game Dev</p>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@
             <button type="button" class="sem-pill locked" data-sem="4">
               <img src="assets/home/63b5c.svg" alt=""> <span>Sem 4</span>
             </button>
-            <button type="button" class="sem-pill locked" data-sem="4">
+            <button type="button" class="sem-pill locked" data-sem="5">
               <img src="assets/home/63b5c.svg" alt=""> <span>Sem 5</span>
             </button>
           </div>
@@ -178,14 +178,14 @@
               <div class="tl-card">
                 <div class="row-between">
                   <div>
-                    <span class="mono-code">CIF61003 • 4 SKS</span>
+                    <span class="mono-code">CIF61003 • 3 SKS</span>
                     <h3>Pemrograman Berorientasi Objek</h3>
                   </div>
-                  <span class="tag tag-dark">✓ Nilai A</span>
+                  <span class="tag tag-dark" id="badge-pbo-home">✓ Nilai A</span>
                 </div>
                 <div class="row-gap mt-8 muted">
                   <img src="assets/home/dcfd3.svg" alt="">
-                  <span>Membuka: <strong class="text-light">Pemrograman Gim</strong></span>
+                  <span>Membuka: <strong class="text-light" id="unlock-pbo-home">Pemrograman Gim</strong></span>
                 </div>
               </div>
             </article>
@@ -222,35 +222,50 @@
             </article>
 
             <article class="tl-item" data-sem="4">
-              <span class="tl-dot teal"></span>
-              <div class="tl-card tl-teal">
+              <span class="tl-dot teal" id="dot-sem4-home"></span>
+              <div class="tl-card tl-teal" id="box-sem4-home">
                 <div class="row-between">
                   <div>
-                    <span class="mono-code text-cyan">CIF62088 • 3 SKS</span>
-                    <h3 class="text-white">Pemrograman Gim</h3>
+                    <span class="mono-code text-cyan" id="kode-sem4-home">CIF62015 • 3 SKS</span>
+                    <h3 class="text-white" id="nama-sem4-home">Pemrograman Gim</h3>
                   </div>
-                  <span class="tag tag-success">✓ Siap Diambil</span>
+                  <span class="tag tag-success" id="badge-sem4-home">✓ Siap Diambil</span>
                 </div>
-                <p class="muted mt-8">Prasyarat PBO terpenuhi. Direkomendasikan untuk KRS Sem 4.</p>
+                <p class="muted mt-8" id="desc-sem4-home">Prasyarat PBO terpenuhi. Direkomendasikan untuk KRS Sem 4.</p>
               </div>
             </article>
 
             <article class="tl-item" data-sem="2" id="card-matdis-home">
-              <span class="tl-dot red"></span>
-              <div class="tl-card tl-red">
+              <span class="tl-dot red" id="dot-matdis-home"></span>
+              <div class="tl-card tl-red" id="box-matdis-home">
                 <div class="row-between">
                   <div>
-                    <span class="mono-code text-rose">CIF61002 • 3 SKS</span>
+                    <span class="mono-code text-rose" id="kode-matdis-home">CIF62003 • 3 SKS</span>
                     <h3 class="text-white">Matematika Diskrit</h3>
                   </div>
                   <span class="tag tag-danger" id="badge-matdis-home">↻ Perlu Ulang</span>
                 </div>
                 <div class="row-between mt-8">
                   <span class="row-gap text-salmon" id="desc-matdis-home">
-                    <img src="assets/home/976b1.svg" alt=""> [!] Nilai D (Syarat Min. C)
+                    <img src="assets/home/976b1.svg" alt="" id="icon-matdis-home">
+                    <span id="teks-matdis-home">[!] Nilai D (Syarat Min. C)</span>
                   </span>
-                  <button type="button" class="btn-secondary-sm" data-goto="krs">Rencana Ulang</button>
+                  <button type="button" class="btn-secondary-sm" id="btn-ulang-matdis-home" data-goto="krs">Rencana Ulang</button>
                 </div>
+              </div>
+            </article>
+
+            <article class="tl-item" data-sem="5">
+              <span class="tl-dot"></span>
+              <div class="tl-card">
+                <div class="row-between">
+                  <div>
+                    <span class="mono-code" id="kode-sem5-home">CIF63042 • 4 SKS</span>
+                    <h3 id="nama-sem5-home">Pengembangan Gim Terpadu</h3>
+                  </div>
+                  <span class="tag tag-dark">🔒 Sem 5</span>
+                </div>
+                <p class="muted mt-8">Terbuka setelah mata kuliah wajib peminatan Semester 4 selesai ditempuh.</p>
               </div>
             </article>
           </div>
@@ -308,8 +323,8 @@
                     <strong class="student-name" id="mhs-nama">Joseph</strong>
                     <span class="tag tag-cyan-outline">SEMESTER 3</span>
                   </div>
-                  <p class="muted mt-2">S1 Teknik Informatika • NIM:<br><span class="mono-num"
-                      id="mhs-nim">225150201111003</span></p>
+                  <p class="muted mt-2"><span id="mhs-prodi-banding">S1 Teknik Informatika</span> • NIM:<br><span class="mono-num"
+                      id="mhs-nim">255150200111023</span></p>
                 </div>
               </div>
               <span class="tag tag-cyan-soft"><span class="dot-green"></span> Aktif</span>
@@ -576,7 +591,7 @@
               </div>
               <div>
                 <span class="muted">Terlewat</span>
-                <strong class="mono-num text-salmon">1 <small>MK</small></strong>
+                <strong class="mono-num text-salmon"><span id="audit-terlewat">1</span> <small>MK</small></strong>
               </div>
             </div>
           </div>
@@ -595,7 +610,7 @@
             <div class="alert-card" id="diag-matdis">
               <div class="row-between">
                 <div class="row-gap">
-                  <span class="tag tag-danger">↻ Wajib Ulang (D)</span>
+                  <span class="tag tag-danger" id="diag-matdis-tag">↻ Wajib Ulang (D)</span>
                   <strong>Matematika Diskrit</strong>
                 </div>
                 <span class="mono-code">3 SKS</span>
@@ -607,7 +622,9 @@
               </div>
             </div>
 
-            <div class="alert-card mt-8">
+            <div id="diag-extra-list"></div>
+
+            <div class="alert-card mt-8" id="diag-aok">
               <div class="row-between">
                 <div class="row-gap">
                   <span class="tag tag-warning">! Terlewat di Sem 1</span>
@@ -621,6 +638,10 @@
                   <strong class="text-light">Jaringan Komputer</strong>.
                 </p>
               </div>
+            </div>
+
+            <div class="alert-card" id="diag-aman" hidden>
+              <span class="text-cyan-sm">✓ Seluruh nilai &amp; mata kuliah prasyarat telah memenuhi standar minimal C.</span>
             </div>
           </div>
         </aside>
@@ -637,13 +658,13 @@
             </button>
           </div>
 
-          <details class="sem-accordion" open>
+          <details class="sem-accordion" data-base-sks="8" open>
             <summary>
               <div class="row-gap">
                 <span class="sem-num num-teal">1</span>
                 <div>
                   <strong>Semester 1</strong>
-                  <p class="muted">19 SKS Lulus • IPK 3.82</p>
+                  <p class="muted sem-summary-sub">19 SKS Lulus • IPS 3.82</p>
                 </div>
               </div>
               <div class="row-gap">
@@ -652,7 +673,7 @@
               </div>
             </summary>
             <div class="sem-courses" id="list-sem-1">
-              <div class="mk-row" data-sks="4">
+              <div class="mk-row" data-sks="4" data-kode="CIF61001">
                 <div>
                   <strong>Pemrograman Dasar</strong>
                   <span class="mono-code">CIF61001 • 4 SKS</span>
@@ -667,7 +688,7 @@
                   <option value="0">E</option>
                 </select>
               </div>
-              <div class="mk-row" data-sks="3">
+              <div class="mk-row" data-sks="3" data-kode="CIF61002">
                 <div>
                   <strong>Pengantar Keilmuan Komputer</strong>
                   <span class="mono-code">CIF61002 • 3 SKS</span>
@@ -682,7 +703,7 @@
                   <option value="0">E</option>
                 </select>
               </div>
-              <div class="mk-row" data-sks="4">
+              <div class="mk-row" data-sks="4" data-kode="MAS61101">
                 <div>
                   <strong>Kalkulus</strong>
                   <span class="mono-code">MAS61101 • 4 SKS</span>
@@ -700,13 +721,13 @@
             </div>
           </details>
 
-          <details class="sem-accordion" open>
+          <details class="sem-accordion" data-base-sks="11" open>
             <summary>
               <div class="row-gap">
                 <span class="sem-num num-red">2</span>
                 <div>
                   <strong>Semester 2</strong>
-                  <p class="muted">20 SKS Tercatat • 1 Perlu Evaluasi</p>
+                  <p class="muted sem-summary-sub">20 SKS Tercatat • 1 Perlu Evaluasi</p>
                 </div>
               </div>
               <div class="row-gap">
@@ -715,12 +736,12 @@
               </div>
             </summary>
             <div class="sem-courses" id="list-sem-2">
-              <div class="mk-row" data-sks="3">
+              <div class="mk-row" data-sks="3" data-kode="CIF62001">
                 <div>
                   <strong>Pemrograman Berorientasi Objek</strong>
                   <span class="mono-code">CIF62001 • 3 SKS</span>
                 </div>
-                <select class="grade-select" aria-label="Nilai PBO">
+                <select class="grade-select" id="select-pbo" aria-label="Nilai PBO">
                   <option value="4" selected>A</option>
                   <option value="3.5">B+</option>
                   <option value="3">B</option>
@@ -731,7 +752,7 @@
                 </select>
               </div>
 
-              <div class="mk-row mk-row-warn" data-sks="3">
+              <div class="mk-row mk-row-warn" id="row-matdis" data-sks="3" data-kode="CIF62003">
                 <div class="w-full">
                   <div class="row-between">
                     <div>
@@ -757,7 +778,7 @@
                 </div>
               </div>
 
-              <div class="mk-row" data-sks="3">
+              <div class="mk-row" data-sks="3" data-kode="CIF62004">
                 <div>
                   <strong>Sistem Operasi</strong>
                   <span class="mono-code">CIF62004 • 3 SKS</span>
@@ -775,13 +796,13 @@
             </div>
           </details>
 
-          <details class="sem-accordion" open>
+          <details class="sem-accordion" data-base-sks="0" open>
             <summary>
               <div class="row-gap">
                 <span class="sem-num num-purple">3</span>
                 <div>
                   <strong>Semester 3 (Berjalan)</strong>
-                  <p class="muted">Estimasi Nilai Sementara</p>
+                  <p class="muted sem-summary-sub">Estimasi Nilai Sementara</p>
                 </div>
               </div>
               <div class="row-gap">
@@ -790,7 +811,7 @@
               </div>
             </summary>
             <div class="sem-courses" id="list-sem-3">
-              <div class="mk-row" data-sks="3">
+              <div class="mk-row" data-sks="3" data-kode="CIF63002">
                 <div>
                   <strong>Interaksi Manusia dan Komputer</strong>
                   <span class="mono-code">CIF63002 • 3 SKS • Sementara</span>
@@ -806,7 +827,7 @@
                   <option value="0">E</option>
                 </select>
               </div>
-              <div class="mk-row" data-sks="4">
+              <div class="mk-row" data-sks="4" data-kode="CIF63005">
                 <div>
                   <strong>Algoritma dan Struktur Data</strong>
                   <span class="mono-code">CIF63005 • 4 SKS • Sementara</span>
@@ -853,7 +874,7 @@
                 <span class="muted-bold">Beban Maksimal</span>
                 <img src="assets/krs/48101.svg" alt="">
               </div>
-              <div class="krs-stat-num mono-num">24 <small>SKS</small></div>
+              <div class="krs-stat-num mono-num"><span id="krs-max-sks">24</span> <small>SKS</small></div>
             </div>
 
             <div class="krs-stat-box">
@@ -876,7 +897,7 @@
 
             <div class="krs-stat-box bordered">
               <span class="muted-bold">Kesiapan Capstone</span>
-              <div class="krs-stat-num mono-num">78% <small id="krs-jalur">Game Dev</small></div>
+              <div class="krs-stat-num mono-num"><span id="krs-capstone-pct">78%</span> <small id="krs-jalur">Game Dev</small></div>
             </div>
           </div>
 
@@ -885,41 +906,43 @@
               <img src="assets/krs/86218.svg" alt="">
               <span class="muted-bold">Catatan Prasyarat &amp; Rekomendasi</span>
             </div>
-            <span class="muted-xs">3 Catatan</span>
+            <span class="muted-xs" id="krs-note-count">3 Catatan</span>
           </div>
 
           <div class="note-stack">
-            <div class="note-row">
+            <div class="note-row" id="note-matdis">
               <div class="row-gap">
-                <img src="assets/krs/1a0ef.svg" alt="">
+                <img src="assets/krs/1a0ef.svg" alt="" id="note-matdis-icon">
                 <div>
                   <strong>Matematika Diskrit</strong>
-                  <p class="muted">Prioritas remediasi sebelum Tugas Akhir</p>
+                  <p class="muted" id="note-matdis-desc">Prioritas remediasi sebelum Tugas Akhir</p>
                 </div>
               </div>
-              <span class="text-peach-bold">↻ Ulang</span>
+              <span class="text-peach-bold" id="note-matdis-badge">↻ Ulang</span>
             </div>
 
-            <div class="note-row">
+            <div id="note-extra-remediasi" class="contents-stack"></div>
+
+            <div class="note-row" id="note-wajib-jalur">
               <div class="row-gap">
-                <img src="assets/krs/025bb.svg" alt="">
+                <img src="assets/krs/025bb.svg" alt="" id="note-jalur-icon">
                 <div>
-                  <strong>Pemrograman Gim</strong>
-                  <p class="muted">Prasyarat PBO terpenuhi</p>
+                  <strong id="note-jalur-nama">Pemrograman Gim</strong>
+                  <p class="muted" id="note-jalur-desc">Prasyarat PBO terpenuhi</p>
                 </div>
               </div>
-              <span class="text-cyan-sm">✓ Memenuhi</span>
+              <span class="text-cyan-sm" id="note-jalur-badge">✓ Memenuhi</span>
             </div>
 
-            <div class="note-row locked-row">
+            <div class="note-row locked-row" id="note-keamanan">
               <div class="row-gap">
-                <img src="assets/krs/16829.svg" alt="">
+                <img src="assets/krs/16829.svg" alt="" id="note-keamanan-icon">
                 <div>
-                  <strong class="strike">Keamanan Informasi</strong>
-                  <p class="muted">Menunggu nilai Jarkom keluar</p>
+                  <strong class="strike" id="note-keamanan-judul">Keamanan Informasi</strong>
+                  <p class="muted" id="note-keamanan-desc">Menunggu nilai Jarkom keluar</p>
                 </div>
               </div>
-              <span class="text-salmon-sm">🔒 Terkunci</span>
+              <span class="text-salmon-sm" id="note-keamanan-badge">🔒 Terkunci</span>
             </div>
           </div>
         </aside>
@@ -934,12 +957,12 @@
           </div>
 
           <div class="krs-list" id="krs-list">
-            <label class="krs-item">
-              <input type="checkbox" class="krs-check" value="3" checked data-saran="true">
+            <label class="krs-item" id="krs-item-jalur">
+              <input type="checkbox" class="krs-check" id="cb-krs-jalur" value="3" checked data-saran="true">
               <div class="krs-info">
                 <div>
-                  <strong>Pemrograman Gim <span class="krs-tag text-cyan-sm">✓ Wajib</span></strong>
-                  <p class="muted"><span class="mono-inline">CIF62015</span> • Kelas D (Lab GII)</p>
+                  <strong id="krs-mk-jalur-judul"><span id="krs-mk-jalur-nama">Pemrograman Gim</span> <span class="krs-tag text-cyan-sm" id="krs-mk-jalur-tag">✓ Wajib</span></strong>
+                  <p class="muted" id="krs-mk-jalur-info"><span class="mono-inline">CIF62015</span> • Kelas D (Lab GII)</p>
                 </div>
                 <span class="sks-label mono-num">3 SKS</span>
               </div>
@@ -967,16 +990,18 @@
               </div>
             </label>
 
-            <label class="krs-item">
-              <input type="checkbox" class="krs-check" value="3" checked data-saran="true">
+            <label class="krs-item" id="krs-item-matdis">
+              <input type="checkbox" class="krs-check" id="cb-krs-matdis" value="3" checked data-saran="true">
               <div class="krs-info">
                 <div>
                   <strong>Matematika Diskrit <span class="krs-tag text-peach-bold">↻ Remediasi</span></strong>
-                  <p class="muted"><span class="mono-inline">CIF61004</span> • Kelas Genap B</p>
+                  <p class="muted"><span class="mono-inline">CIF62003</span> • Kelas Genap B</p>
                 </div>
                 <span class="sks-label mono-num">3 SKS</span>
               </div>
             </label>
+
+            <div id="krs-remediasi-list" class="contents-stack"></div>
 
             <label class="krs-item">
               <input type="checkbox" class="krs-check" value="3" checked data-saran="true">
@@ -1002,12 +1027,12 @@
 
             <!-- Edge Case / Error Prevention HTA 5.2 & Bab 1.2 Layar 5 -->
             <div class="krs-item disabled" id="krs-locked-item" role="button" tabindex="0" aria-disabled="true">
-              <input type="checkbox" value="3" disabled tabindex="-1" aria-label="Keamanan Informasi Terkunci">
+              <input type="checkbox" id="cb-krs-keamanan" value="3" disabled tabindex="-1" aria-label="Keamanan Informasi">
               <div class="krs-info">
                 <div>
-                  <strong class="strike">Keamanan Informasi <span class="krs-tag text-salmon-sm">🔒
+                  <strong class="strike" id="krs-keamanan-judul">Keamanan Informasi <span class="krs-tag text-salmon-sm" id="krs-keamanan-tag">🔒
                       Terkunci</span></strong>
-                  <p class="muted"><span class="mono-inline">CIF62005</span> • Prasyarat belum tuntas</p>
+                  <p class="muted" id="krs-keamanan-desc"><span class="mono-inline">CIF62005</span> • Prasyarat belum tuntas</p>
                 </div>
                 <span class="sks-label mono-num">3 SKS</span>
               </div>
@@ -1026,7 +1051,7 @@
             </div>
             <div class="row-between mt-10">
               <div>
-                <strong id="krs-mhs-info">Joseph (<span class="mono-inline">225150201111003</span>)</strong>
+                <strong id="krs-mhs-info">Joseph (<span class="mono-inline">255150200111023</span>)</strong>
                 <p class="muted">PA: <strong class="text-light">Mahardeka Tri Ananta, S.Kom., M.T., M.Sc.</strong></p>
               </div>
               <button type="button" class="btn-draft-pdf" id="btn-draft-pdf">

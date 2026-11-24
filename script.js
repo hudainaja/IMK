@@ -130,14 +130,43 @@ function hitungAudit() {
 
   rows.forEach((row) => {
     const sks = Number(row.dataset.sks);
-    const val = row.querySelector(".grade-select").value;
-    if (val === "-") return;
+    const select = row.querySelector(".grade-select");
+    const val = select.value;
+    if (val === "-") {
+      select.classList.remove("grade-warn");
+      return;
+    }
 
     const bobot = Number(val);
+    const gagal = bobot < 2;
+    select.classList.toggle("grade-warn", gagal);
     daftarNilai.push([sks, bobot]);
     mkTerinput += 1;
-    if (bobot >= 2) sksLulus += sks;
+    if (!gagal) sksLulus += sks;
     else wajibUlang += 1;
+  });
+
+  // Evaluasi badge Tuntas / Gagal secara otomatis untuk setiap blok semester
+  document.querySelectorAll(".sem-accordion").forEach((acc) => {
+    const selects = [...acc.querySelectorAll(".grade-select")];
+    const terisi = selects.filter((s) => s.value !== "-");
+    const gagal = terisi.filter((s) => Number(s.value) < 2).length;
+    const badge = acc.querySelector("summary .tag");
+    const numBox = acc.querySelector(".sem-num");
+
+    if (terisi.length === 0) {
+      badge.textContent = "● Aktif";
+      badge.className = "tag tag-purple";
+      numBox.className = "sem-num num-purple";
+    } else if (gagal > 0) {
+      badge.textContent = "↻ " + gagal + " Gagal";
+      badge.className = "tag tag-danger";
+      numBox.className = "sem-num num-red";
+    } else {
+      badge.textContent = "✓ Tuntas";
+      badge.className = "tag tag-success";
+      numBox.className = "sem-num num-teal";
+    }
   });
 
   const ipk = hitungIPKData(daftarNilai);
@@ -150,22 +179,15 @@ function hitungAudit() {
   document.getElementById("audit-sks").textContent = 34 + sksLulus;
   document.getElementById("home-sks").textContent = 37 + sksLulus; // 54/144 SKS saat awal sesuai Bab 1.1
   document.getElementById("audit-ulang").textContent = wajibUlang;
+  document.getElementById("home-perhatian").textContent = (1 + wajibUlang) + " Matkul";
 
   // Evaluasi otomatis prasyarat Matematika Diskrit (Syarat Min. C / bobot >= 2)
-  const selectMatdis = document.getElementById("select-matdis");
-  const nilaiMatdis = Number(selectMatdis.value);
+  const nilaiMatdis = Number(document.getElementById("select-matdis").value);
   const lulusMatdis = nilaiMatdis >= 2;
 
-  const gagalSem2 = [...document.querySelectorAll("#list-sem-2 .grade-select")]
-    .filter((s) => s.value !== "-" && Number(s.value) < 2).length;
-
   document.getElementById("diag-matdis").hidden = lulusMatdis;
-  document.getElementById("diag-count").textContent = (lulusMatdis ? 1 : 2) + " ISU TEMUAN";
-  document.getElementById("home-perhatian").textContent = (lulusMatdis ? 1 : 2) + " Matkul";
-  document.getElementById("sem2-badge").textContent = gagalSem2 === 0 ? "✓ Tuntas" : "↻ " + gagalSem2 + " Gagal";
-  document.getElementById("sem2-badge").className = "tag " + (gagalSem2 === 0 ? "tag-success" : "tag-danger");
+  document.getElementById("diag-count").textContent = (1 + wajibUlang) + " ISU TEMUAN";
 
-  selectMatdis.classList.toggle("grade-warn", !lulusMatdis);
   const matdisSub = document.getElementById("matdis-sub");
   matdisSub.textContent = lulusMatdis
     ? "CIF62003 • 3 SKS • ✓ Syarat terpenuhi"
@@ -325,6 +347,7 @@ document.getElementById("form-tambah").addEventListener("submit", (e) => {
   }
   errorEl.hidden = true;
 
+  const sem = document.getElementById("mk-sem-baru").value;
   const sks = document.getElementById("mk-sks-baru").value;
   const nilai = document.getElementById("mk-nilai-baru").value;
 
@@ -347,11 +370,11 @@ document.getElementById("form-tambah").addEventListener("submit", (e) => {
   });
 
   row.append(info, select);
-  document.getElementById("list-sem-2").appendChild(row);
+  document.getElementById("list-sem-" + sem).appendChild(row);
   inputNama.value = "";
   document.getElementById("dialog-tambah").close();
   hitungAudit();
-  tampilPesan("Mata kuliah " + nama + " berhasil ditambahkan.");
+  tampilPesan("Mata kuliah " + nama + " ditambahkan ke Semester " + sem + ".");
 });
 
 document.getElementById("btn-simpan-nilai").addEventListener("click", (e) => {

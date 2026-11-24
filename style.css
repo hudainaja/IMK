@@ -101,7 +101,7 @@ summary:focus-visible,
   margin: 0 auto;
   background: linear-gradient(163deg, #161B2E 9%, var(--color-bg-surface) 100%);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   border-left: 1px solid #1D233B;
   border-right: 1px solid #1D233B;
 }
@@ -341,7 +341,7 @@ button:disabled,
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 15;
+  z-index: 25;
   height: 76px;
   padding: 0 var(--space-md);
   background: rgba(22, 27, 46, 0.92);

@@ -238,13 +238,6 @@ function gantiTargetPembanding() {
 
 document.getElementById("btn-go-sso").addEventListener("click", masukAplikasi);
 
-document.getElementById("btn-logout").addEventListener("click", () => {
-  document.getElementById("app-header").hidden = true;
-  document.getElementById("app-main").hidden = true;
-  document.getElementById("bottom-nav").hidden = true;
-  document.getElementById("screen-opening").classList.add("active");
-});
-
 document.querySelectorAll(".nav-item").forEach((btn) => {
   btn.addEventListener("click", () => bukaTab(btn.dataset.tab));
 });

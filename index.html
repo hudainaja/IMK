@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudiKu - Sahabat Akademikmu (FILKOM UB)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ==================== 0. HALAMAN LOGIN ==================== -->
+    <section id="screen-login" class="screen active" aria-label="Halaman Masuk">
+      <div class="login-wrap">
+        <div class="brand-hero">
+          <svg class="logo-owl-lg" viewBox="0 0 80 64" aria-hidden="true">
+            <!-- Topi Toga + Burung Hantu sederhana -->
+            <polygon points="40,4 8,20 40,36 72,20" fill="#f97316"/>
+            <rect x="12" y="14" width="4" height="34" rx="2" fill="#fb923c"/>
+            <polygon points="12,48 16,48 14,54" fill="#fdba74"/>
+            <line x1="68" y1="22" x2="68" y2="38" stroke="#f97316" stroke-width="3"/>
+            <polygon points="65,42 71,42 68,35" fill="#f97316"/>
+            <circle cx="29" cy="43" r="10" fill="none" stroke="#ea580c" stroke-width="5"/>
+            <circle cx="51" cy="43" r="10" fill="none" stroke="#ea580c" stroke-width="5"/>
+            <polygon points="40,47 36,53 40,58 44,53" fill="#f97316"/>
+          </svg>
+          <div>
+            <h1 class="brand-title">StudiKu</h1>
+            <p class="brand-sub">Sahabat akademikmu</p>
+          </div>
+        </div>
+
+        <div class="login-copy">
+          <h2>Selamat datang di StudiKu</h2>
+          <p>Halo, Mahasiswa FILKOM UB! Petakan jalur peminatan dan susun rencana KRS-mu dengan percaya diri.</p>
+        </div>
+
+        <div class="login-box">
+          <button type="button" class="btn-sso" id="btn-open-sso">
+            <span aria-hidden="true">🔒</span> Masuk dengan Akun UB
+          </button>
+          <p class="sso-note">Gunakan akun SSO UB<br>(@ub.ac.id/@student.ub.ac.id)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HEADER UTAMA (MUNCUL SETELAH LOGIN) ==================== -->
+    <header id="app-header" class="topbar" hidden>
+      <div class="topbar-brand">
+        <svg class="logo-owl-sm" viewBox="0 0 80 64" aria-hidden="true">
+          <polygon points="40,4 8,20 40,36 72,20" fill="#f97316"/>
+          <circle cx="29" cy="43" r="10" fill="none" stroke="#ea580c" stroke-width="6"/>
+          <circle cx="51" cy="43" r="10" fill="none" stroke="#ea580c" stroke-width="6"/>
+          <polygon points="40,47 36,53 40,58 44,53" fill="#f97316"/>
+        </svg>
+        <div>
+          <div class="row-gap">
+            <strong>StudiKu</strong>
+            <span class="pill-role">MAHASISWA</span>
+          </div>
+          <small id="header-subtitle">Learning Path</small>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" class="icon-btn" id="btn-notif" aria-label="Notifikasi">
+          🔔<span class="dot-alert" id="notif-dot"></span>
+        </button>
+        <button type="button" class="avatar-btn" id="btn-logout" title="Keluar / Ganti Akun" aria-label="Profil dan Keluar">
+          👤
+        </button>
+      </div>
+    </header>
+
+    <main id="app-main" hidden>
+      <!-- ==================== 1. TAB HOME (LEARNING PATH) ==================== -->
+      <section id="screen-home" class="screen" aria-label="Learning Path">
+        <div class="card focus-card">
+          <div class="row-between">
+            <span class="eyebrow-teal">● FOKUS (REKOMENDASI)</span>
+            <button type="button" class="btn-chip" data-goto="banding">⇄ Ganti</button>
+          </div>
+          <h2 id="home-jalur-nama">Game Development &amp; Interactive Systems</h2>
+          <p class="muted">S1 Teknik Informatika • Angkatan 2025</p>
+          <div class="progress-meta">
+            <span>Kesiapan Mata Kuliah Keahlian</span>
+            <strong>5 / 21 Selesai</strong>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill" style="width: 24%"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="stat-card grad-purple">
+            <div class="row-between"><small>TOTAL SKS</small><span>🎓</span></div>
+            <strong><span id="home-sks">54</span> <small>/ 144</small></strong>
+            <span>Semester 3 Aktif</span>
+          </div>
+          <div class="stat-card grad-orange">
+            <div class="row-between"><small>PERLU PERHATIAN</small><span>!</span></div>
+            <strong id="home-perhatian">2 Matkul</strong>
+            <span>Nilai D &amp; Prasyarat</span>
+          </div>
+          <div class="stat-card grad-slate">
+            <div class="row-between"><small>IPK KUMULATIF</small><span>↗</span></div>
+            <strong id="home-ipk">3.45</strong>
+            <span>Target Jalur &gt; 3.25</span>
+          </div>
+          <div class="stat-card grad-teal">
+            <div class="row-between"><small>PROGRES JALUR</small><span>🎮</span></div>
+            <strong id="home-progres">40%</strong>
+            <span id="home-jalur-short">Game Technology</span>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <span>TAHAPAN SEMESTER</span>
+          <small class="muted">Kurikulum 2024</small>
+        </div>
+        <div class="sem-tabs" role="tablist" aria-label="Filter Semester">
+          <button type="button" class="sem-pill" data-sem="all">Semua</button>
+          <button type="button" class="sem-pill" data-sem="2">✓ Sem 1-2</button>
+          <button type="button" class="sem-pill active" data-sem="3">● Sem 3 (Aktif)</button>
+          <button type="button" class="sem-pill" data-sem="4">🔒 Sem 4</button>
+        </div>
+
+        <div class="section-head">
+          <span>PETA ALUR MATA KULIAH</span>
+          <button type="button" class="link-btn" data-goto="nilai">Cek Prasyarat</button>
+        </div>
+
+        <div class="timeline" id="home-timeline">
+          <article class="tl-item" data-sem="2">
+            <span class="tl-dot done"></span>
+            <div class="tl-card">
+              <div class="row-between">
+                <small class="code">CIF61003 • 4 SKS</small>
+                <span class="badge badge-neutral">Nilai A</span>
+              </div>
+              <h3>Pemrograman Berorientasi Objek</h3>
+              <p class="muted">Dosen: Budi Darmawan, M.Kom</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-sem="2">
+            <span class="tl-dot done"></span>
+            <div class="tl-card">
+              <div class="row-between">
+                <small class="code">CIF61004 • 4 SKS</small>
+                <span class="badge badge-neutral">Nilai B+</span>
+              </div>
+              <h3>Struktur Data &amp; Algoritma</h3>
+              <p class="muted">Dosen: Agus Wahyu, Ph.D</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-sem="3">
+            <span class="tl-dot current"></span>
+            <div class="tl-card tl-purple">
+              <div class="row-between">
+                <small class="code">CIF62015 • 3 SKS</small>
+                <span class="badge badge-purple">Sedang Ditempuh</span>
+              </div>
+              <h3>Grafika Komputer</h3>
+              <div class="row-between muted-sm">
+                <span>🕒 Kelas TI-C • Lab G-201</span>
+                <strong>Presensi 93%</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="tl-item" data-sem="4">
+            <span class="tl-dot ready"></span>
+            <div class="tl-card tl-teal">
+              <div class="row-between">
+                <small class="code">CIF62088 • 3 SKS</small>
+                <span class="badge badge-teal">Siap Diambil</span>
+              </div>
+              <h3>Pemrograman Gim</h3>
+              <p class="muted">Prasyarat PBO terpenuhi. Direkomendasikan untuk KRS Sem 4.</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-sem="2" id="card-matdis-home">
+            <span class="tl-dot warn"></span>
+            <div class="tl-card tl-red">
+              <div class="row-between">
+                <small class="code">CIF61002 • 3 SKS</small>
+                <span class="badge badge-red" id="badge-matdis-home">Perlu Ulang</span>
+              </div>
+              <h3>Matematika Diskrit</h3>
+              <div class="row-between muted-sm">
+                <span id="desc-matdis-home">⚠ Nilai D (Syarat Min. C)</span>
+                <button type="button" class="btn-mini" data-goto="krs">Rencana Ulang</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="card pa-card">
+          <div class="row-between">
+            <div>
+              <small class="muted">JADWAL BIMBINGAN PA</small>
+              <h3>Mahardeka Tri Ananta, S.Kom., M.T., M.Sc.</h3>
+            </div>
+            <span class="badge badge-teal">● Terkonfirmasi</span>
+          </div>
+          <div class="pa-detail">
+            <div class="row-between"><span>📅 Waktu Sesi</span><strong>Kamis, 15 Feb 2025 • 09:30</strong></div>
+            <div class="row-between"><span>📍 Ruang / Media</span><strong>Gedung F Lt. 6</strong></div>
+          </div>
+          <p class="muted">Agenda: Evaluasi perbaikan nilai Matematika Diskrit dan persetujuan paket peminatan Semester 4.</p>
+          <div class="pa-actions">
+            <button type="button" class="btn-primary" id="btn-sync-cal">📅 Sinkronkan ke Google Kalender</button>
+            <button type="button" class="btn-square" id="btn-chat-pa" aria-label="Pesan Dosen PA">💬</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 2. TAB BANDING JALUR ==================== -->
+      <section id="screen-banding" class="screen" aria-label="Banding Jalur">
+        <div class="card profile-card">
+          <div class="row-between">
+            <div class="row-gap">
+              <div class="profile-icon" aria-hidden="true">🪪</div>
+              <div>
+                <div class="row-gap">
+                  <strong id="mhs-nama">Joseph</strong>
+                  <span class="badge badge-teal">SEMESTER 3</span>
+                </div>
+                <small class="muted">S1 Teknik Informatika • NIM: <span id="mhs-nim">225150201111003</span></small>
+              </div>
+            </div>
+            <span class="badge badge-teal">● Aktif</span>
+          </div>
+          <div class="profile-foot">
+            <span>Peminatan: <strong id="banding-jalur-aktif">Game Dev &amp; Int Systems</strong></span>
+            <span>IPK: <strong id="banding-ipk">3.45</strong></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="row-between mb-8">
+            <strong>Komparasi Dua Jalur</strong>
+            <label for="select-target" class="sr-only">Pilih Jalur Target</label>
+            <select id="select-target" class="select-compact">
+              <option value="ai">Target: AI &amp; Automation</option>
+              <option value="rpl">Target: Rekayasa Perangkat Lunak</option>
+            </select>
+          </div>
+
+          <div class="compare-box">
+            <small class="muted">JALUR ANDA SAAT INI</small>
+            <p class="compare-title">🎮 <span id="compare-current">Game Dev &amp; Interactive Systems</span></p>
+            <div class="row-between muted-sm">
+              <span>Total Diambil: <strong>24 SKS</strong></span>
+              <span class="text-teal">Aktif</span>
+            </div>
+          </div>
+
+          <div class="compare-box compare-target">
+            <div class="row-between">
+              <small class="muted">TARGET PERBANDINGAN</small>
+              <span class="badge badge-purple">Pilihan 1</span>
+            </div>
+            <p class="compare-title" id="target-nama">🤖 AI &amp; Automation Engineering</p>
+            <div class="row-between muted-sm">
+              <span>Target Baru: <strong>144 SKS</strong></span>
+              <span class="text-purple">Direkomendasikan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="mini-stat">
+            <span class="badge badge-teal" id="stat-persen">75%</span>
+            <strong id="stat-sks-cocok">18 <small>/ 24 SKS</small></strong>
+            <small>Transferable &amp; Cocok</small>
+          </div>
+          <div class="mini-stat">
+            <span class="badge badge-teal">Aman</span>
+            <strong>+0 <small>Smt</small></strong>
+            <small>Lulus Sem 8 (Tepat)</small>
+          </div>
+          <div class="mini-stat">
+            <span class="badge badge-orange">Fokus</span>
+            <strong id="stat-mk-baru">4 <small>Matkul</small></strong>
+            <small>Wajib Baru Tambahan</small>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <span>Matriks Status Mata Kuliah</span>
+          <small class="muted">Total: 7 Mata Kuliah Terkait</small>
+        </div>
+
+        <div class="matrix-group matrix-green">
+          <div class="matrix-head">
+            <span>✓ BAGIAN A: LULUS &amp; TERKONVERSI</span>
+            <span class="badge badge-teal">3 Matkul</span>
+          </div>
+          <div class="matrix-row">
+            <div>
+              <strong>Pemrograman Lanjut <small class="code">CIF61003</small></strong>
+              <p class="muted">3 SKS • Terpetakan ke Dasar Pemrograman Jalur</p>
+            </div>
+            <span class="badge badge-teal">Nilai: A</span>
+          </div>
+          <div class="matrix-row">
+            <div>
+              <strong>Aljabar Linear <small class="code">CIF61005</small></strong>
+              <p class="muted">4 SKS • Matkul Inti Wajib Kedua Jalur</p>
+            </div>
+            <span class="badge badge-teal">Nilai: B+</span>
+          </div>
+          <div class="matrix-row">
+            <div>
+              <strong>Basis Data <small class="code">CIF61008</small></strong>
+              <p class="muted">3 SKS • Menopang Data &amp; Sistem Cerdas</p>
+            </div>
+            <span class="badge badge-teal">Nilai: A</span>
+          </div>
+        </div>
+
+        <div class="matrix-group matrix-red">
+          <div class="matrix-head">
+            <span>⚠ BAGIAN B: WAJIB DIAMBIL DI JALUR TARGET</span>
+            <span class="badge badge-red">Perlu Direncanakan</span>
+          </div>
+          <div id="matrix-target-list">
+            <div class="matrix-row">
+              <div>
+                <strong>Kecerdasan Artifisial Dasar</strong>
+                <p class="muted">3 SKS • CIF62002 • Jadwal: Semester 4</p>
+              </div>
+              <span class="badge badge-red">Prioritas KRS</span>
+            </div>
+            <div class="matrix-row">
+              <div>
+                <strong>Machine Learning &amp; Pola</strong>
+                <p class="muted">4 SKS • CIF62010 • Jadwal: Semester 5</p>
+              </div>
+              <span class="badge badge-orange">Prasyarat AI</span>
+            </div>
+            <div class="matrix-row">
+              <div>
+                <strong>Probabilitas &amp; Statistika Lanjut</strong>
+                <p class="muted">3 SKS • CIF62007 • Jadwal: Semester 4</p>
+              </div>
+              <span class="badge badge-red">Prioritas KRS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="matrix-group">
+          <div class="matrix-head">
+            <span>⇄ BAGIAN C: MENJADI MATKUL PILIHAN BEBAS</span>
+            <span class="badge badge-neutral">1 Matkul</span>
+          </div>
+          <div class="matrix-row">
+            <div>
+              <strong>Pengantar Desain Game <small class="code">CIF61040</small></strong>
+              <p class="muted">3 SKS • Nilai: A • Tidak terbuang, dihitung SKS Pilihan Bebas</p>
+            </div>
+            <span class="badge badge-neutral">Tetap Dihitung</span>
+          </div>
+        </div>
+
+        <div class="card advisor-box">
+          <strong>Rekomendasi Penasihat Akademik Otomatis</strong>
+          <p class="muted" id="advisor-text">Pindah ke jalur AI &amp; Automation masih sangat aman dan tidak menghambat kelulusan jika mata kuliah prasyarat mulai diambil di Semester 4 mendatang.</p>
+          <span class="badge badge-teal">Beban SKS Baru: 20 SKS / Semester</span>
+        </div>
+
+        <button type="button" class="btn-primary full" id="btn-simulasi-jalur">⇄ Simulasi Ambil Jalur Target Ini</button>
+        <div class="grid-2 mt-8">
+          <button type="button" class="btn-secondary" id="btn-konsul-banding">💬 Konsul Dosen PA</button>
+          <button type="button" class="btn-secondary" id="btn-toggle-target">☷ Ganti Pembanding</button>
+        </div>
+      </section>
+
+      <!-- ==================== 3. TAB INPUT & AUDIT NILAI ==================== -->
+      <section id="screen-nilai" class="screen" aria-label="Input dan Audit Nilai">
+        <div class="row-between">
+          <span class="eyebrow-teal">● AUDIT AKADEMIK AKTIF</span>
+          <small class="muted">Kurikulum 2024-2028</small>
+        </div>
+        <div class="row-between mb-8">
+          <h2>Input &amp; Audit Nilai</h2>
+          <small class="muted">NIM: <span id="nilai-nim">225150201111003</span></small>
+        </div>
+
+        <div class="card">
+          <div class="row-between mb-8">
+            <strong>Ringkasan Progres Akademik</strong>
+            <span class="badge badge-teal">IPK <span id="audit-ipk">3.45</span></span>
+          </div>
+          <div class="audit-summary">
+            <div><small>Terinput</small><strong id="audit-mk">6 MK</strong></div>
+            <div><small>SKS Lulus</small><strong id="audit-sks">17 SKS</strong></div>
+            <div><small>Wajib Ulang</small><strong class="text-orange" id="audit-ulang">1 MK</strong></div>
+            <div><small>Terlewat</small><strong class="text-orange">1 MK</strong></div>
+          </div>
+        </div>
+
+        <div class="card diag-card">
+          <div class="row-between mb-8">
+            <strong>Hasil Diagnosis Otomatis</strong>
+            <span class="badge badge-purple" id="diag-count">2 ISU TEMUAN</span>
+          </div>
+          <p class="muted mb-8">Sistem memvalidasi kurikulum FILKOM UB 2024. Perbaiki status mata kuliah berikut untuk mencegah hambatan KRS semester depan:</p>
+
+          <div class="diag-item" id="diag-matdis">
+            <div class="row-between">
+              <div><span class="badge badge-red">Wajib Ulang (D)</span> <strong>Matematika Diskrit</strong></div>
+              <small class="muted">3 SKS</small>
+            </div>
+            <p class="muted">Memblokir Teori Graf &amp; Pemodelan Gim pada peminatan semester 4.</p>
+          </div>
+
+          <div class="diag-item">
+            <div class="row-between">
+              <div><span class="badge badge-orange">Terlewat di Sem 1</span> <strong>AOK</strong></div>
+              <small class="muted">3 SKS</small>
+            </div>
+            <p class="muted">Prasyarat wajib untuk membuka Sistem Operasi &amp; Jaringan Komputer.</p>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <span>Daftar Nilai Semester</span>
+          <button type="button" class="btn-chip" id="btn-open-tambah">+ Tambah MK</button>
+        </div>
+
+        <!-- Menggunakan <details> bawaan HTML agar akordion jalan tanpa JS rumit -->
+        <details class="sem-group" open>
+          <summary>
+            <span><strong>1. Semester 1</strong> <small class="muted">• Tuntas</small></span>
+            <span class="badge badge-teal">Lulus</span>
+          </summary>
+          <div class="mk-list" id="list-sem-1">
+            <div class="mk-row" data-sks="4">
+              <div>
+                <strong>Pemrograman Dasar</strong>
+                <small class="muted">CIF61001 • 4 SKS</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai Pemrograman Dasar">
+                <option value="4" selected>A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1">D</option>
+              </select>
+            </div>
+            <div class="mk-row" data-sks="3">
+              <div>
+                <strong>Pengantar Keilmuan Komputer</strong>
+                <small class="muted">CIF61002 • 3 SKS</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai Pengantar Keilmuan Komputer">
+                <option value="4" selected>A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1">D</option>
+              </select>
+            </div>
+            <div class="mk-row" data-sks="4">
+              <div>
+                <strong>Kalkulus</strong>
+                <small class="muted">MAS61101 • 4 SKS</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai Kalkulus">
+                <option value="4">A</option>
+                <option value="3.5" selected>B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1">D</option>
+              </select>
+            </div>
+          </div>
+        </details>
+
+        <details class="sem-group" open>
+          <summary>
+            <span><strong>2. Semester 2</strong> <small class="muted">• Evaluasi Prasyarat</small></span>
+            <span class="badge badge-red" id="sem2-badge">1 Perlu Perbaikan</span>
+          </summary>
+          <div class="mk-list" id="list-sem-2">
+            <div class="mk-row" data-sks="3">
+              <div>
+                <strong>Pemrograman Berorientasi Objek</strong>
+                <small class="muted">CIF62001 • 3 SKS</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai PBO">
+                <option value="4" selected>A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1">D</option>
+              </select>
+            </div>
+            <div class="mk-row" data-sks="3" data-matdis="true">
+              <div>
+                <strong>Matematika Diskrit</strong>
+                <small class="text-orange" id="matdis-note">CIF62003 • 3 SKS • Prasyarat sem 4</small>
+              </div>
+              <select class="grade-select" id="select-matdis" aria-label="Nilai Matematika Diskrit">
+                <option value="4">A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1" selected>D</option>
+              </select>
+            </div>
+            <div class="mk-row" data-sks="3">
+              <div>
+                <strong>Sistem Operasi</strong>
+                <small class="muted">CIF62004 • 3 SKS</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai Sistem Operasi">
+                <option value="4" selected>A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+                <option value="2">C</option>
+                <option value="1">D</option>
+              </select>
+            </div>
+          </div>
+        </details>
+
+        <details class="sem-group" open>
+          <summary>
+            <span><strong>3. Semester 3 (Berjalan)</strong> <small class="muted">• Sementara</small></span>
+            <span class="badge badge-purple">Aktif</span>
+          </summary>
+          <div class="mk-list" id="list-sem-3">
+            <div class="mk-row" data-sks="3">
+              <div>
+                <strong>Interaksi Manusia dan Komputer</strong>
+                <small class="muted">CIF63002 • 3 SKS • Sementara</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai IMK">
+                <option value="-" selected>-</option>
+                <option value="4">A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+              </select>
+            </div>
+            <div class="mk-row" data-sks="4">
+              <div>
+                <strong>Algoritma dan Struktur Data</strong>
+                <small class="muted">CIF63005 • 4 SKS • Sementara</small>
+              </div>
+              <select class="grade-select" aria-label="Nilai ASD">
+                <option value="-" selected>-</option>
+                <option value="4">A</option>
+                <option value="3.5">B+</option>
+                <option value="3">B</option>
+              </select>
+            </div>
+          </div>
+        </details>
+
+        <button type="button" class="btn-primary full mt-12" id="btn-simpan-nilai">💾 Simpan &amp; Hitung Rencana KRS</button>
+        <p class="center-note muted">Hasil audit otomatis memperbarui syarat KRS pada jalur peminatan yang dipilih.</p>
+      </section>
+
+      <!-- ==================== 4. TAB RENCANA KRS ==================== -->
+      <section id="screen-krs" class="screen" aria-label="Rencana KRS">
+        <div class="row-between">
+          <span class="eyebrow-teal">● PERENCANAAN SEMESTER 4</span>
+          <span class="badge badge-purple" id="krs-status-badge">Draft KRS</span>
+        </div>
+        <h2>Susun Rencana KRS</h2>
+        <p class="muted mb-8">Jalur Aktif: <strong id="krs-jalur">Game Development &amp; Interactive Systems</strong></p>
+
+        <div class="card">
+          <div class="row-between">
+            <span>Total Beban SKS Dipilih</span>
+            <strong><span id="krs-total-sks">15</span> / 24 SKS</strong>
+          </div>
+          <div class="progress-track mt-8">
+            <div class="progress-fill" id="krs-bar" style="width: 62%"></div>
+          </div>
+          <small class="muted" id="krs-warning">Batas maksimal 24 SKS (IPK &ge; 3.00).</small>
+        </div>
+
+        <div class="section-head">
+          <span>Daftar Rekomendasi Mata Kuliah</span>
+          <small class="muted">Centang untuk ambil</small>
+        </div>
+
+        <div class="krs-list" id="krs-list">
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3" checked id="krs-matdis">
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Matematika Diskrit (Ulang)</strong>
+                <span class="badge badge-red">3 SKS</span>
+              </div>
+              <small class="muted">Prioritas perbaikan nilai D agar prasyarat aman</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3" checked>
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Arsitektur &amp; Organisasi Komputer (AOK)</strong>
+                <span class="badge badge-orange">3 SKS</span>
+              </div>
+              <small class="muted">Susulan matkul wajib yang terlewat di Sem 1</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3" checked>
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Pemrograman Gim</strong>
+                <span class="badge badge-teal">3 SKS</span>
+              </div>
+              <small class="muted">Wajib Peminatan Game Dev • Prasyarat PBO lulus</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3" checked>
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Kecerdasan Artifisial Dasar</strong>
+                <span class="badge badge-purple">3 SKS</span>
+              </div>
+              <small class="muted">Wajib Prodi / Inti Jalur AI &amp; Automation</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3" checked>
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Probabilitas &amp; Statistika Lanjut</strong>
+                <span class="badge badge-neutral">3 SKS</span>
+              </div>
+              <small class="muted">Pendukung Komputasi &amp; Data Sem 4</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="4">
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Rekayasa Perangkat Lunak</strong>
+                <span class="badge badge-neutral">4 SKS</span>
+              </div>
+              <small class="muted">Mata Kuliah Wajib Semester 4</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="4">
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Jaringan Komputer</strong>
+                <span class="badge badge-neutral">4 SKS</span>
+              </div>
+              <small class="muted">Mata Kuliah Wajib Semester 4</small>
+            </div>
+          </label>
+
+          <label class="krs-item">
+            <input type="checkbox" class="krs-check" value="3">
+            <div class="krs-info">
+              <div class="row-between">
+                <strong>Desain Antarmuka Lanjut</strong>
+                <span class="badge badge-neutral">3 SKS</span>
+              </div>
+              <small class="muted">Pilihan Bebas Lanjutan IMK</small>
+            </div>
+          </label>
+        </div>
+
+        <button type="button" class="btn-primary full mt-12" id="btn-ajukan-krs">✓ Ajukan Rencana KRS ke Dosen PA</button>
+      </section>
+    </main>
+
+    <!-- ==================== NAVIGASI BAWAH ==================== -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Menu Utama" hidden>
+      <button type="button" class="nav-item active" data-tab="home">
+        <span class="nav-icon">🏠</span>
+        <small>Home</small>
+      </button>
+      <button type="button" class="nav-item" data-tab="banding">
+        <span class="nav-icon">⇄</span>
+        <small>Banding</small>
+      </button>
+      <button type="button" class="nav-item" data-tab="nilai">
+        <span class="nav-icon">📝</span>
+        <small>Nilai</small>
+      </button>
+      <button type="button" class="nav-item" data-tab="krs">
+        <span class="nav-icon">📅</span>
+        <small>KRS</small>
+      </button>
+    </nav>
+
+    <!-- ==================== DIALOG SSO UB (NATIVE HTML <dialog>) ==================== -->
+    <dialog id="dialog-sso" class="modal">
+      <form id="form-sso" method="dialog">
+        <h3>Login SSO Universitas Brawijaya</h3>
+        <p class="muted mb-8">Masukkan identitas mahasiswa FILKOM UB.</p>
+        <label class="field">
+          <span>Nama Mahasiswa</span>
+          <input type="text" id="input-nama" value="Joseph" required>
+        </label>
+        <label class="field">
+          <span>Email SSO / NIM</span>
+          <input type="text" id="input-nim" value="225150201111003" required>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" data-close="dialog-sso">Batal</button>
+          <button type="submit" class="btn-primary">Masuk</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- ==================== DIALOG TAMBAH MATKUL ==================== -->
+    <dialog id="dialog-tambah" class="modal">
+      <form id="form-tambah" method="dialog">
+        <h3>Tambah Mata Kuliah</h3>
+        <label class="field">
+          <span>Nama Mata Kuliah</span>
+          <input type="text" id="mk-nama-baru" placeholder="Contoh: Jaringan Komputer" required>
+        </label>
+        <label class="field">
+          <span>Jumlah SKS</span>
+          <select id="mk-sks-baru">
+            <option value="2">2 SKS</option>
+            <option value="3" selected>3 SKS</option>
+            <option value="4">4 SKS</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Nilai Huruf</span>
+          <select id="mk-nilai-baru">
+            <option value="4">A</option>
+            <option value="3.5">B+</option>
+            <option value="3">B</option>
+            <option value="2">C</option>
+            <option value="1">D</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" data-close="dialog-tambah">Batal</button>
+          <button type="submit" class="btn-primary">Simpan MK</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- ==================== TOAST FEEDBACK RINGKAS ==================== -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

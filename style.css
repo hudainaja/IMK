@@ -1,0 +1,858 @@
+/* Variabel warna utama agar mudah dijelaskan dan diubah */
+:root {
+  --bg-outer: #080a12;
+  --bg-app: #0f1221;
+  --bg-card: #181c32;
+  --bg-card-alt: #1f2440;
+  --border: #2c3357;
+  --text: #f3f5ff;
+  --muted: #9ba3c7;
+  --orange: #f97316;
+  --purple: #7c5cff;
+  --lavender: #c7beff;
+  --teal: #14b8a6;
+  --red: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-outer);
+  color: var(--text);
+  line-height: 1.45;
+}
+
+button,
+select,
+input,
+summary,
+label.krs-item {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--lavender);
+  outline-offset: 2px;
+}
+
+/* Bingkai ukuran layar HP di tengah layar laptop */
+.app {
+  max-width: 420px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--bg-app);
+  position: relative;
+  border-left: 1px solid #1b2038;
+  border-right: 1px solid #1b2038;
+}
+
+/* Navigasi antar layar: hanya .active yang ditampilkan */
+.screen {
+  display: none;
+  padding: 16px 16px 104px;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* ==================== 0. LOGIN ==================== */
+#screen-login {
+  padding: 0;
+}
+
+.login-wrap {
+  min-height: 100dvh;
+  padding: 36px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(234, 88, 12, 0.72), transparent 48%),
+    radial-gradient(circle at 100% 95%, rgba(234, 88, 12, 0.55), transparent 42%),
+    linear-gradient(180deg, #3c425c 0%, #343952 60%, #272b40 100%);
+}
+
+.brand-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 72px;
+}
+
+.logo-owl-lg {
+  width: 84px;
+  height: 68px;
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.brand-sub {
+  font-size: 0.88rem;
+  color: #e2e6f5;
+}
+
+.login-copy {
+  text-align: center;
+  margin: auto 0;
+  padding: 24px 4px;
+}
+
+.login-copy h2 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.login-copy p {
+  font-size: 0.95rem;
+  color: #e2e6f5;
+}
+
+.login-box {
+  background: rgba(24, 24, 40, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+}
+
+.btn-sso {
+  width: 100%;
+  min-height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: #564a7d;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-sso:hover {
+  background: #665894;
+}
+
+.sso-note {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: #cfd5ec;
+}
+
+/* ==================== HEADER ATAS ==================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #121528;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-owl-sm {
+  width: 38px;
+  height: 32px;
+}
+
+.topbar-brand small {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.pill-role {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 99px;
+  background: #2b3558;
+  color: #cbd5ff;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn,
+.avatar-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  position: relative;
+}
+
+.avatar-btn {
+  border-radius: 50%;
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.dot-alert {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* ==================== KOMPONEN UMUM ==================== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 4px 0;
+}
+
+h3 {
+  font-size: 0.98rem;
+  margin: 4px 0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.muted-sm {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 6px;
+}
+
+.code {
+  color: #b7c0e8;
+  font-size: 0.74rem;
+  font-family: monospace;
+}
+
+.eyebrow-teal {
+  color: #34d399;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.text-teal { color: #34d399; font-weight: 600; }
+.text-purple { color: var(--lavender); font-weight: 600; }
+.text-orange { color: #fb923c; }
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.row-gap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mb-8 { margin-bottom: 8px; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Grid Kartu Statistik */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.stat-card {
+  padding: 14px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-card small {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+.stat-card strong {
+  font-size: 1.45rem;
+  margin-top: 4px;
+}
+
+.stat-card span {
+  font-size: 0.76rem;
+  opacity: 0.92;
+}
+
+.grad-purple { background: linear-gradient(135deg, #5d3fd3, #7c4dff); }
+.grad-orange { background: linear-gradient(135deg, #d95b38, #f27449); }
+.grad-slate  { background: #1c233a; border: 1px solid var(--border); }
+.grad-teal   { background: linear-gradient(135deg, #0d7a75, #149e96); }
+
+/* Progress Bar */
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  margin: 12px 0 6px;
+}
+
+.progress-track {
+  height: 7px;
+  background: #272d4d;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--lavender);
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+
+/* Badge Status */
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.badge-teal    { background: rgba(20, 184, 166, 0.2); color: #5eead4; }
+.badge-purple  { background: rgba(124, 92, 255, 0.25); color: #ddd6fe; }
+.badge-red     { background: rgba(239, 68, 68, 0.22); color: #fca5a5; }
+.badge-orange  { background: rgba(249, 115, 22, 0.22); color: #fdba74; }
+.badge-neutral { background: #262c49; color: #d5dcff; }
+
+/* Tombol */
+.btn-primary {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--lavender);
+  color: #171430;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.btn-primary:hover {
+  background: #dad3ff;
+}
+
+.btn-secondary {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.btn-chip,
+.btn-mini {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card-alt);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--lavender);
+  font-size: 0.78rem;
+}
+
+.full { width: 100%; }
+
+/* ==================== 1. HOME TIMELINE & PA ==================== */
+.sem-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.sem-pill {
+  padding: 6px 11px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: #14182b;
+  color: var(--muted);
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.sem-pill.active {
+  background: #2f2859;
+  border-color: var(--purple);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--border);
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.tl-dot {
+  position: absolute;
+  left: -21px;
+  top: 16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #525b82;
+  border: 2px solid var(--bg-app);
+}
+
+.tl-dot.current { background: var(--lavender); }
+.tl-dot.ready   { background: var(--teal); }
+.tl-dot.warn    { background: var(--red); }
+
+.tl-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.tl-purple { background: #2d2154; border-color: #5b43a8; }
+.tl-teal   { background: #103c42; border-color: #1c6b73; }
+.tl-red    { background: #432327; border-color: #7c383f; }
+
+.pa-detail {
+  background: #131629;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pa-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pa-actions .btn-primary {
+  flex: 1;
+}
+
+.btn-square {
+  width: 44px;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card-alt);
+  color: var(--text);
+}
+
+/* ==================== 2. BANDING JALUR ==================== */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #282f52;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+}
+
+.profile-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.select-compact {
+  background: var(--bg-card-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+.compare-box {
+  background: #13172a;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.compare-target {
+  background: #201c42;
+  border-color: var(--purple);
+}
+
+.compare-title {
+  font-weight: 700;
+  font-size: 0.94rem;
+  margin: 4px 0;
+}
+
+.mini-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.mini-stat strong { font-size: 1.05rem; }
+.mini-stat small  { font-size: 0.7rem; color: var(--muted); }
+
+.matrix-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.matrix-green { border-color: #1f635c; background: #12262b; }
+.matrix-red   { border-color: #6b2e35; background: #291822; }
+
+.matrix-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.matrix-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+}
+
+.advisor-box p {
+  margin: 6px 0 10px;
+}
+
+/* ==================== 3. INPUT & AUDIT NILAI ==================== */
+.audit-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  text-align: center;
+  background: #13172a;
+  padding: 10px 6px;
+  border-radius: 12px;
+}
+
+.audit-summary small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.audit-summary strong {
+  font-size: 1rem;
+}
+
+.diag-item {
+  background: #13172a;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.sem-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.sem-group summary {
+  list-style: none;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card-alt);
+}
+
+.mk-list {
+  padding: 6px 14px 10px;
+}
+
+.mk-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.mk-row:last-child {
+  border-bottom: none;
+}
+
+.mk-row strong {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.grade-select {
+  min-width: 60px;
+  min-height: 38px;
+  background: #121629;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.center-note {
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ==================== 4. RENCANA KRS ==================== */
+.krs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.krs-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.krs-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--purple);
+}
+
+.krs-info {
+  flex: 1;
+}
+
+/* ==================== NAVIGASI BAWAH MELAYANG ==================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 388px;
+  background: #14182c;
+  border: 1px solid #323a63;
+  border-radius: 22px;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  z-index: 20;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+  border-radius: 14px;
+}
+
+.nav-icon {
+  width: 36px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 99px;
+  font-size: 1.05rem;
+}
+
+.nav-item.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-item.active .nav-icon {
+  background: var(--purple);
+}
+
+/* ==================== MODAL <dialog> & TOAST ==================== */
+.modal {
+  margin: auto;
+  width: calc(100% - 32px);
+  max-width: 360px;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.field {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.82rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #121528;
+  color: var(--text);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #252c4d;
+  color: #ffffff;
+  border: 1px solid var(--lavender);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  z-index: 30;
+  max-width: 360px;
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

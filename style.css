@@ -1304,11 +1304,16 @@ button:disabled,
 .nav-icon {
   position: relative;
   z-index: 3;
+  width: 32px;
   height: 30px;
   display: grid;
   place-items: center;
   margin-bottom: var(--space-xs);
-  transition: transform 0.2s ease;
+}
+
+/* Kompensasi padding kanan-bawah bawaan viewBox ikon KRS dari Figma */
+.nav-item[data-tab="krs"] .nav-icon img {
+  transform: translate(4.5px, 3px);
 }
 
 .nav-item .icon-on  { display: none; }
@@ -1318,7 +1323,16 @@ button:disabled,
 .nav-item.active { color: #FFFFFF; }
 .nav-item.active .icon-on  { display: block; }
 .nav-item.active .icon-off { display: none; }
-.nav-item.active .nav-icon { transform: translateY(-18px); }
+
+/* Pusat lingkaran b24b9.svg ada di cy=39.9px -> top:-35px menempatkan pusat di y=+5px,
+   sama persis dengan pusat kotak .nav-icon 30px pada top:-10px (-10 + 15 = +5px) */
+.nav-item.active .nav-icon {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+}
 
 .nav-item.active .nav-notch {
   display: block;
@@ -1332,7 +1346,7 @@ button:disabled,
 .nav-item.active .nav-glow {
   display: block;
   position: absolute;
-  top: -36px;
+  top: -35px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;

@@ -152,19 +152,31 @@ function hitungAudit() {
   document.getElementById("audit-ulang").textContent = wajibUlang;
 
   // Evaluasi otomatis prasyarat Matematika Diskrit (Syarat Min. C / bobot >= 2)
-  const nilaiMatdis = Number(document.getElementById("select-matdis").value);
+  const selectMatdis = document.getElementById("select-matdis");
+  const nilaiMatdis = Number(selectMatdis.value);
   const lulusMatdis = nilaiMatdis >= 2;
+
+  const gagalSem2 = [...document.querySelectorAll("#list-sem-2 .grade-select")]
+    .filter((s) => s.value !== "-" && Number(s.value) < 2).length;
 
   document.getElementById("diag-matdis").hidden = lulusMatdis;
   document.getElementById("diag-count").textContent = (lulusMatdis ? 1 : 2) + " ISU TEMUAN";
   document.getElementById("home-perhatian").textContent = (lulusMatdis ? 1 : 2) + " Matkul";
-  document.getElementById("sem2-badge").textContent = lulusMatdis ? "✓ Tuntas" : "↻ 1 Gagal";
-  document.getElementById("sem2-badge").className = "tag " + (lulusMatdis ? "tag-success" : "tag-danger");
-  document.getElementById("matdis-sub").textContent = lulusMatdis
+  document.getElementById("sem2-badge").textContent = gagalSem2 === 0 ? "✓ Tuntas" : "↻ " + gagalSem2 + " Gagal";
+  document.getElementById("sem2-badge").className = "tag " + (gagalSem2 === 0 ? "tag-success" : "tag-danger");
+
+  selectMatdis.classList.toggle("grade-warn", !lulusMatdis);
+  const matdisSub = document.getElementById("matdis-sub");
+  matdisSub.textContent = lulusMatdis
     ? "CIF62003 • 3 SKS • ✓ Syarat terpenuhi"
     : "CIF62003 • 3 SKS • Perlu perbaikan";
+  matdisSub.className = "mono-code " + (lulusMatdis ? "text-cyan" : "text-salmon");
+
   document.getElementById("badge-matdis-home").textContent = lulusMatdis ? "✓ Lulus" : "↻ Perlu Ulang";
   document.getElementById("badge-matdis-home").className = "tag " + (lulusMatdis ? "tag-success" : "tag-danger");
+  document.getElementById("desc-matdis-home").textContent = lulusMatdis
+    ? "✓ Syarat Min. C Terpenuhi"
+    : "[!] Nilai D (Syarat Min. C)";
 }
 
 // 7. Kalkulasi real-time kuota SKS pada Layar 5 (maksimal 24 SKS)
@@ -296,8 +308,10 @@ document.getElementById("btn-konsul-banding").addEventListener("click", () => {
 });
 
 // Input Nilai & Validasi Form Bebas Error (Layar 4 & Bab 3.2)
-document.getElementById("screen-nilai").addEventListener("change", (e) => {
-  if (e.target.classList.contains("grade-select")) hitungAudit();
+["change", "input"].forEach((evt) => {
+  document.getElementById("screen-nilai").addEventListener(evt, (e) => {
+    if (e.target.classList.contains("grade-select")) hitungAudit();
+  });
 });
 
 document.getElementById("btn-open-tambah").addEventListener("click", () => {

@@ -54,17 +54,9 @@ function bukaTab(namaTab) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// 2. Masuk ke aplikasi utama setelah login
+// 2. Masuk ke aplikasi utama dari halaman pembuka
 function masukAplikasi() {
-  const rawId = document.getElementById("input-nim").value.trim() || "225150201111003";
-  const nim = rawId.includes("@") ? "225150201111003" : rawId;
-
-  document.getElementById("mhs-nim").textContent = nim;
-  document.getElementById("nilai-nim").textContent = nim;
-  document.getElementById("krs-mhs-info").textContent = "Joseph (" + nim + ")";
-
   document.getElementById("screen-opening").classList.remove("active");
-  document.getElementById("screen-sso").classList.remove("active");
   document.getElementById("app-header").hidden = false;
   document.getElementById("app-main").hidden = false;
   document.getElementById("bottom-nav").hidden = false;
@@ -195,42 +187,8 @@ function gantiTargetPembanding() {
 
 // ==================== EVENT LISTENERS ====================
 
-// Alur Opening -> Student Login SSO -> Aplikasi Utama
-document.getElementById("btn-go-sso").addEventListener("click", () => {
-  document.getElementById("screen-opening").classList.remove("active");
-  document.getElementById("screen-sso").classList.add("active");
-});
-
-document.getElementById("btn-back-opening").addEventListener("click", () => {
-  document.getElementById("screen-sso").classList.remove("active");
-  document.getElementById("screen-opening").classList.add("active");
-});
-
-document.querySelectorAll(".role-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".role-btn").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    const isMhs = btn.dataset.role === "Mahasiswa";
-    document.getElementById("sso-role-title").textContent = isMhs ? "AKSES AKUN MAHASISWA" : "AKSES DOSEN PA / ADMIN";
-    document.getElementById("sso-role-desc").textContent = isMhs
-      ? "Akses KRS semester aktif, pantau learning path kurikulum, audit transkrip KHS, dan reservasi bimbingan Dosen PA."
-      : "Validasi rencana studi mahasiswa bimbingan, tinjau diagnosis nilai, dan kelola jadwal konsultasi akademik.";
-  });
-});
-
-document.getElementById("btn-toggle-pass").addEventListener("click", () => {
-  const input = document.getElementById("input-pass");
-  input.type = input.type === "password" ? "text" : "password";
-});
-
-document.getElementById("form-sso").addEventListener("submit", (e) => {
-  e.preventDefault();
-  masukAplikasi();
-});
-
-document.getElementById("btn-quick-sso").addEventListener("click", masukAplikasi);
-document.getElementById("btn-lupa-sandi").addEventListener("click", () => tampilPesan("Tautan reset kata sandi dikirim ke email @student.ub.ac.id."));
-document.getElementById("btn-daftar-akun").addEventListener("click", () => tampilPesan("Aktivasi akun mahasiswa baru dilakukan melalui SIAM UB."));
+// Alur Opening -> Aplikasi Utama
+document.getElementById("btn-go-sso").addEventListener("click", masukAplikasi);
 
 document.getElementById("btn-logout").addEventListener("click", () => {
   document.getElementById("app-header").hidden = true;

@@ -590,20 +590,6 @@ button:disabled,
   margin-bottom: var(--space-xs);
 }
 
-.pill-action {
-  min-height: 38px;
-  background: var(--bg-elevated);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
-  border-radius: 99px;
-  padding: 6px 14px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .progress-meta {
   display: flex;
   justify-content: space-between;

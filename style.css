@@ -1275,6 +1275,7 @@ button:disabled,
   width: calc(100% - 32px);
   max-width: 404px;
   height: 78px;
+  padding: 0 18px;
   background: #0A0F20;
   border-radius: 23px;
   display: grid;
